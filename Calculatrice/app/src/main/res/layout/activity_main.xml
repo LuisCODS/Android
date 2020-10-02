@@ -71,7 +71,7 @@
                 android:layout_weight="1"
                 android:background="#EDE8E8"
                 android:text="+"
-                android:textSize="50sp" />
+                android:textSize="80sp" />
 
             <Button
                 android:id="@+id/btnSustration"
@@ -80,7 +80,7 @@
                 android:layout_weight="1"
                 android:background="#EDE8E8"
                 android:text="-"
-                android:textSize="50sp" />
+                android:textSize="80sp" />
 
             <Button
                 android:id="@+id/btnMultiplication"
@@ -98,7 +98,7 @@
                 android:layout_weight="1"
                 android:background="#EDE8E8"
                 android:text="/"
-                android:textSize="50sp" />
+                android:textSize="80sp" />
         </LinearLayout>
 
         <LinearLayout
