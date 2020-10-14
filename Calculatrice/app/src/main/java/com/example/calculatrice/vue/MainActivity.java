@@ -20,9 +20,11 @@ public class MainActivity extends AppCompatActivity {
     private Button btnDiv;
     Double nb1, nb2, resultat;//Globaux
 
+    //PORTE D'ENTRÉE DE L'APPLICATION
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //CHARGE L'INTERFACE GRAPHIQUE ET SES COMPOSANTS
         setContentView(R.layout.activity_main);
         //call methodes...
         init();
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * fait la liaison des composants graphiques.
+     * Recupere les widget par l'ID
      */
     private void init() {
         //Toast.makeText(MainActivity.this, "Entrée invalide!", Toast.LENGTH_SHORT).show();
@@ -76,7 +79,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
      }
-
-
 
 }// fin class
