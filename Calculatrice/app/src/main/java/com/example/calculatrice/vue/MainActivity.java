@@ -2,11 +2,15 @@ package com.example.calculatrice.vue;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.calculatrice.R;
+//ADD BY ME
+import android.widget.LinearLayout;
+import android.graphics.Color;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,8 +28,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //CHARGE L'INTERFACE GRAPHIQUE ET SES COMPOSANTS
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);//CHARGE L'INTERFACE GRAPHIQUE ET SES COMPOSANTS
+        LinearLayout l = findViewById(R.id.homePage); //GET ELEMENT BY ID TO: MODIFICATION DE LA COULEUR DU LAYOUT
+        l.setBackgroundColor(Color.GRAY);
+        //l.setGravity(Gravity.CENTER_HORIZONTAL);
         //call methodes...
         init();
         calculer();
@@ -36,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
      * Recupere les widget par l'ID
      */
     private void init() {
+
         //Toast.makeText(MainActivity.this, "Entrée invalide!", Toast.LENGTH_SHORT).show();
         champ1 =  (EditText)findViewById(R.id.txt1);
         champ2 =  (EditText)findViewById(R.id.txt2);
@@ -58,9 +65,11 @@ public class MainActivity extends AppCompatActivity {
                     nb1 = Double.parseDouble(champ1.getText().toString() );
                     nb2 = Double.parseDouble(champ2.getText().toString() );
                     resultat = nb1+nb2;
-                    txtResult.setText(resultat.toString());
+                    txtResult.setText(resultat.toString());//SHOW RESULT
                 }catch (Exception e){
                     Toast.makeText(MainActivity.this, "Entrée invalide!", Toast.LENGTH_SHORT).show();
+                }finally {
+                        //MainActivity.super.onRestart();
                 }
              }
          });
