@@ -2,7 +2,6 @@ package com.example.calculatrice.vue;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,18 +9,17 @@ import android.widget.Toast;
 import com.example.calculatrice.R;
 //ADD BY ME
 import android.widget.LinearLayout;
-import android.graphics.Color;
 
 public class MainActivity extends AppCompatActivity {
 
     // Proprietes globaux
     private EditText champ1;
     private EditText champ2;
-    private EditText txtResult;
+    private EditText result;
     private Button btnSomme;
-    private Button btnSus;
-    private Button btnMulti;
-    private Button btnDiv;
+    private Button btn_Soustraction;
+    private Button btn_Division;
+    private Button btn_Multiplication;
     Double nb1, nb2, resultat;//Globaux
 
     //PORTE D'ENTRÉE DE L'APPLICATION
@@ -30,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);//CHARGE L'INTERFACE GRAPHIQUE ET SES COMPOSANTS
         LinearLayout l = findViewById(R.id.homePage); //GET ELEMENT BY ID TO: MODIFICATION DE LA COULEUR DU LAYOUT
-        l.setBackgroundColor(Color.GRAY);
+        //l.setBackgroundColor(Color.GRAY);
         //l.setGravity(Gravity.CENTER_HORIZONTAL);
         //call methodes...
         init();
@@ -41,22 +39,24 @@ public class MainActivity extends AppCompatActivity {
      * fait la liaison des composants graphiques.
      * Recupere les widget par l'ID
      */
-    private void init() {
-
+    private void init()
+    {
         //Toast.makeText(MainActivity.this, "Entrée invalide!", Toast.LENGTH_SHORT).show();
-        champ1 =  (EditText)findViewById(R.id.txt1);
-        champ2 =  (EditText)findViewById(R.id.txt2);
-        txtResult = (EditText)findViewById(R.id.txtResult);
-        btnSomme = (Button)findViewById(R.id.btnAddition);
-        btnSus = (Button)findViewById(R.id.btnSustration);
-        btnMulti = (Button)findViewById(R.id.btnMultiplication);
-        btnDiv = (Button)findViewById(R.id.btnDivision);
-    }
+        champ1 =  findViewById(R.id.txt1);
+        champ2 =  findViewById(R.id.txt2);
+        result = findViewById(R.id.txtResult);
+        btnSomme = findViewById(R.id.btnAddition);
+        btn_Soustraction = findViewById(R.id.btnSustration);
+        btn_Multiplication = findViewById(R.id.btnMultiplication);
+        btn_Division = findViewById(R.id.btnDivision);
+    }//fin methode init()
 
     /**
      * fait le calcul
      */
-    private void calculer(){
+    private void calculer()
+    {
+        //BUTTON SOMME
          btnSomme.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
@@ -65,15 +65,20 @@ public class MainActivity extends AppCompatActivity {
                     nb1 = Double.parseDouble(champ1.getText().toString() );
                     nb2 = Double.parseDouble(champ2.getText().toString() );
                     resultat = nb1+nb2;
-                    txtResult.setText(resultat.toString());//SHOW RESULT
+                    result.setText(resultat.toString());//SHOW RESULT
                 }catch (Exception e){
+                    //MSN erreur
                     Toast.makeText(MainActivity.this, "Entrée invalide!", Toast.LENGTH_SHORT).show();
                 }finally {
-                        //MainActivity.super.onRestart();
+                    //VIDE LES CHAMPS APRES LE RESULTAT
+                    champ1.setText("");
+                    champ2.setText("");
                 }
              }
          });
-        btnSus.setOnClickListener(new View.OnClickListener() {
+
+         //BUTTON SOUSTRACTION
+        btn_Soustraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -81,12 +86,57 @@ public class MainActivity extends AppCompatActivity {
                     nb1 = Double.parseDouble(champ1.getText().toString() );
                     nb2 = Double.parseDouble(champ2.getText().toString() );
                     resultat = nb1-nb2;
-                    txtResult.setText(resultat.toString());
+                    result.setText(resultat.toString());
                 }catch (Exception e){
                     Toast.makeText(MainActivity.this, "Entrée invalide!", Toast.LENGTH_SHORT).show();
+                }finally {
+                    //VIDE LES CHAMPS APRES LE RESULTAT
+                    champ1.setText("");
+                    champ2.setText("");
                 }
             }
         });
-     }
 
-}// fin class
+        //BUTTON MULTIPLICATION
+        btn_Multiplication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    // get inputs filds values
+                    nb1 = Double.parseDouble(champ1.getText().toString() );
+                    nb2 = Double.parseDouble(champ2.getText().toString() );
+                    resultat = nb1*nb2;
+                    result.setText(resultat.toString());
+                }catch (Exception e){
+                    Toast.makeText(MainActivity.this, "Entrée invalide!", Toast.LENGTH_SHORT).show();
+                }finally {
+                    //VIDE LES CHAMPS APRES LE RESULTAT
+                    champ1.setText("");
+                    champ2.setText("");
+                }
+            }
+        });
+
+        //BUTTON DIVISION
+        btn_Division.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    // get inputs filds values
+                    nb1 = Double.parseDouble(champ1.getText().toString() );
+                    nb2 = Double.parseDouble(champ2.getText().toString() );
+                    resultat = nb1/nb2;
+                    result.setText(resultat.toString());
+                }catch (Exception e){
+                    Toast.makeText(MainActivity.this, "Entrée invalide!", Toast.LENGTH_SHORT).show();
+                }finally {
+                    //VIDE LES CHAMPS APRES LE RESULTAT
+                    champ1.setText("");
+                    champ2.setText("");
+                }
+            }
+        });
+
+     }//fin methode calculer()
+
+}//fin class
